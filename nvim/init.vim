@@ -29,6 +29,7 @@ set ignorecase
 set smartcase
 set nohlsearch
 set ruler
+set ai
 set smarttab
 set tabstop=2
 set softtabstop=0
@@ -49,6 +50,8 @@ syntax enable
  set termguicolors
 " let g:gruvbox_italic=1
 " colorscheme gruvbox
+let g:solarized_termcolors=16
+set t_Co=16
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark " or light
 colorscheme NeoSolarized
@@ -85,6 +88,14 @@ function! SyncTree()
 endfunction
 "close vim if nerdtree if the only window left open is a NERDTREE
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"tmux navigator
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
 "NERDCommenterConfig
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -110,7 +121,8 @@ let g:coc_global_extensions = [
   \ 'coc-eslint', 
 	\ 'coc-pairs',
   \ 'coc-prettier', 
-  \ 'coc-json', 
+  \ 'coc-json',
+  \ 'coc-highlight',
   \ ]
 " from readme
 " if hidden is not set, TextEdit might fail.
